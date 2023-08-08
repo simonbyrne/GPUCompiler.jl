@@ -148,9 +148,10 @@ end
 # remove the existing cache
 # NOTE: call this function from global scope, so any change triggers recompilation.
 function reset_runtime()
-    lock(runtime_lock) do
-        rm(compile_cache; recursive=true, force=true)
+    mkpidlock(joinpath(dirname(compile_cache), basename(compile_cache)*".pidlock")) do
+        lock(runtime_lock) do
+            rm(compile_cache; recursive=true, force=true)
+        end
     end
-
     return
 end

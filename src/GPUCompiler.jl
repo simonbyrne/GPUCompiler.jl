@@ -10,6 +10,7 @@ using ExprTools: splitdef, combinedef
 using Libdl
 
 using Scratch: @get_scratch!
+using Pidfile
 
 const CC = Core.Compiler
 using Core: MethodInstance, CodeInstance, CodeInfo
